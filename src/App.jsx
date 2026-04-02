@@ -243,19 +243,30 @@ export default function BlenderWizardChat() {
     setLoading(true);
 
     try {
-      const res = await fetch("https://api.anthropic.com/v1/messages", {
+      const openaiMessages = [
+        { role: "system", content: buildSystemPrompt() },
+        ...newApiHistory.map(m => ({
+          role: m.role,
+          content: typeof m.content === "string" ? m.content :
+            Array.isArray(m.content)
+              ? m.content.filter(b => b.type === "text").map(b => b.text).join("")
+              : ""
+        }))
+      ];
+      const res = await fetch("https://api.openai.com/v1/chat/completions", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${import.meta.env.VITE_OPENAI_API_KEY}`
+        },
         body: JSON.stringify({
-          model: "claude-sonnet-4-20250514",
+          model: "gpt-4o-mini",
           max_tokens: 1000,
-          system: buildSystemPrompt(),
-          tools: [{ type: "web_search_20250305", name: "web_search" }],
-          messages: newApiHistory,
+          messages: openaiMessages,
         }),
       });
       const data = await res.json();
-      const reply = data.content?.map(b => b.text || "").join("") || "うまく答えられなかったよ…もう一度試してね！";
+      const reply = data.choices?.[0]?.message?.content || "うまく答えられなかったよ…もう一度試してね！";
       setApiHistory([...newApiHistory, { role: "assistant", content: reply }]);
       setMessages(prev => [...prev, { role: "assistant", content: reply }]);
       setExpression("happy");
