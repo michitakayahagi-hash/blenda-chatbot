@@ -324,7 +324,7 @@ export default function BlenderWizardChat() {
           <div style={styles.avatarSmall} dangerouslySetInnerHTML={{__html: WIZARD_EXPRESSIONS.idle}} />
           <div>
             <div style={styles.headerName}>ブレンダ ✨</div>
-            <div style={styles.headerSub}>Blender / Unity / クリスタ / VRoid</div>
+            <div style={styles.headerSub}>Blender・Unity・クリスタ・VRoid の魔法使い✨</div>
           </div>
         </div>
         <div style={{display:"flex", alignItems:"center", gap:10}}>
@@ -343,7 +343,7 @@ export default function BlenderWizardChat() {
               <div style={{animation:"float 3s ease-in-out infinite"}} dangerouslySetInnerHTML={{__html: WIZARD_EXPRESSIONS.happy}} />
               <div style={styles.speechBubble}>
                 <p style={{fontWeight:700, marginBottom:6}}>やあ！ブレンダだよ！✨</p>
-                <p>Blenderのことなら何でも聞いてね！画像やPDFも送れるよ🔮</p>
+                <p>Blender・Unity・クリスタ・VRoidのことなら何でも聞いてね！画像やPDFも送れるよ🔮</p>
               </div>
             </div>
             <p style={styles.suggTitle}>こんなことを聞いてみよう！</p>
