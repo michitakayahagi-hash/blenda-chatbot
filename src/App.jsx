@@ -1,9 +1,9 @@
 import { useState, useRef, useEffect } from "react";
 
-const SYSTEM_PROMPT = `あなたは「ブレンダ」という名前の元気で明るい魔法使いキャラクターです。Blender（3DCGソフトウェア）の専門家でもあります。
+const SYSTEM_PROMPT = `あなたは「クウ」という名前の元気で明るい魔法使いキャラクターです。Blender（3DCGソフトウェア）の専門家でもあります。
 
 キャラクター設定：
-- 名前：ブレンダ（Blenda）
+- 名前：クウ（Kuu）
 - 元気でフレンドリーな魔法使いの女の子
 - Blenderの魔法（機能）を使いこなす3DCG魔法使い
 - 語尾に「～だよ！」「～だね！」「～してみよう！」などを使う
@@ -323,7 +323,7 @@ export default function BlenderWizardChat() {
         <div style={styles.headerLeft}>
           <div style={styles.avatarSmall} dangerouslySetInnerHTML={{__html: WIZARD_EXPRESSIONS.idle}} />
           <div>
-            <div style={styles.headerName}>ブレンダ ✨</div>
+            <div style={styles.headerName}>クウ ✨</div>
             <div style={styles.headerSub}>Blender・Unity・クリスタ・VRoid の魔法使い✨</div>
           </div>
         </div>
@@ -342,7 +342,7 @@ export default function BlenderWizardChat() {
             <div style={styles.characterWrap}>
               <div style={{animation:"float 3s ease-in-out infinite"}} dangerouslySetInnerHTML={{__html: WIZARD_EXPRESSIONS.happy}} />
               <div style={styles.speechBubble}>
-                <p style={{fontWeight:700, marginBottom:6}}>やあ！ブレンダだよ！✨</p>
+                <p style={{fontWeight:700, marginBottom:6}}>やあ！クウだよ！✨</p>
                 <p>Blender・Unity・クリスタ・VRoidのことなら何でも聞いてね！画像やPDFも送れるよ🔮</p>
               </div>
             </div>
@@ -423,7 +423,7 @@ export default function BlenderWizardChat() {
             value={input}
             onChange={e => setInput(e.target.value)}
             onKeyDown={handleKey}
-            placeholder="ブレンダに質問しよう！画像やPDFも添付できるよ ✨"
+            placeholder="クウに質問しよう！画像やPDFも添付できるよ ✨"
             rows={1}
           />
           <button style={{...styles.sendBtn, opacity: ((!input.trim() && attachments.length===0)||loading)?0.45:1}}
