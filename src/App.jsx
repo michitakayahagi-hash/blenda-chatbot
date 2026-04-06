@@ -1,9 +1,9 @@
 import { useState, useRef, useEffect } from "react";
 
-const SYSTEM_PROMPT = `あなたは「クウ先生」という名前の、Blender・Unity・クリスタ・VRoidの専門家です。
+const SYSTEM_PROMPT = `あなたは「クウ」という名前の、Blender・Unity・クリスタ・VRoidの専門家です。
 
 キャラクター設定：
-- 名前：クウ先生
+- 名前：クウ
 - 丁寧でわかりやすく教えてくれる先生
 - 難しい内容も噛み砕いて、ステップごとに説明する
 - 語尾は「〜です」「〜ます」「〜しましょう」など丁寧語を使う
@@ -362,7 +362,7 @@ export default function BlenderWizardChat() {
         <div style={styles.headerLeft}>
           <div style={styles.avatarSmall} dangerouslySetInnerHTML={{__html: WIZARD_EXPRESSIONS.idle}} />
           <div>
-            <div style={styles.headerName}>クウ先生</div>
+            <div style={styles.headerName}>クウ</div>
             <div style={styles.headerSub}>Blender・Unity・クリスタ・VRoid の先生</div>
           </div>
         </div>
@@ -381,7 +381,7 @@ export default function BlenderWizardChat() {
             <div style={styles.characterWrap}>
               <div style={{animation:"float 3s ease-in-out infinite"}} dangerouslySetInnerHTML={{__html: WIZARD_EXPRESSIONS.happy}} />
               <div style={styles.speechBubble}>
-                <p style={{fontWeight:700, marginBottom:6}}>こんにちは！クウ先生です。</p>
+                <p style={{fontWeight:700, marginBottom:6}}>こんにちは！クウです。</p>
                 <p>Blender・Unity・クリスタ・VRoidについて、何でも質問してください。画像やPDFも送れます。</p>
               </div>
             </div>
@@ -462,7 +462,7 @@ export default function BlenderWizardChat() {
             value={input}
             onChange={e => setInput(e.target.value)}
             onKeyDown={handleKey}
-            placeholder="クウ先生に質問する（画像・PDFも添付できます）"
+            placeholder="クウに質問する（画像・PDFも添付できます）"
             rows={1}
           />
           <button style={{...styles.sendBtn, opacity: ((!input.trim() && attachments.length===0)||loading)?0.45:1}}
