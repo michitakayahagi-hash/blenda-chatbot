@@ -80,7 +80,7 @@ const formatText = (text) => {
   });
 };
 
-const ADMIN_PASSWORD = "Bloom0301";
+const ADMIN_PASSWORD = "0301";
 
 const toBase64 = (file) => new Promise((res, rej) => {
   const r = new FileReader();
