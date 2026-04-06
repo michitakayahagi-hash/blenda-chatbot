@@ -51,7 +51,7 @@ const SYSTEM_PROMPT = `あなたは「クウ先生」という名前の、Blende
 - 図解が有効な場合（手順・構造・比較など）はASCIIアートやテキスト図を使って視覚的に説明する
 - 手順は3〜5ステップ以内にまとめる
 - 難しい内容も丁寧にわかりやすく説明する
-- 回答の最後に「何かご不明な点があればお気軽にどうぞ。」と添える`;`
+- 回答の最後に「何かご不明な点があればお気軽にどうぞ。」と添える`;
 
 const SUGGESTIONS = [
   "🎨 PBRマテリアルの作り方",
@@ -82,31 +82,30 @@ const renderInline = (text) => {
 };
 
 const formatText = (text) => {
-  // 段落単位で分割（空行2つ以上で段落区切り）
   const paragraphs = text.split(/\n{2,}/);
   return paragraphs.map((para, pi) => {
     const lines = para.split("\n");
-    // ASCII図の検出（罫線文字や図形文字を含む行）
-    const isAsciiArt = lines.some(l => /[\u2500-\u257f|+\-]{3,}/.test(l) || /^[\s|+\-=]+$/.test(l));
+    // ASCII図の検出
+    const isAsciiArt = lines.some(l => /[\u2500-\u257f|+\-]{3,}/.test(l));
     if (isAsciiArt) {
       return <pre key={pi} style={{background:"#f5f0ff", borderRadius:8, padding:"10px 14px", fontSize:12, overflowX:"auto", margin:"6px 0", fontFamily:"monospace", color:"#4a2a7a", whiteSpace:"pre"}}>{para}</pre>;
     }
     // 番号付きリストの検出
-    const isNumberedList = lines.some(l => /^\d+[\.\.）)]\ /.test(l.trim()));
+    const isNumberedList = lines.some(l => /^\d+[.．）)] /.test(l.trim()));
     if (isNumberedList) {
       return <ol key={pi} style={{margin:"6px 0", paddingLeft:22, lineHeight:1.9}}>
         {lines.filter(l => l.trim()).map((l, li) => {
-          const content = l.replace(/^\d+[\.\.）)\.]+\ */, "");
+          const content = l.replace(/^\d+[.．）)]+\s*/, "");
           return <li key={li} style={{marginBottom:4}}>{renderInline(content)}</li>;
         })}
       </ol>;
     }
     // 箇条書きリストの検出
-    const isBulletList = lines.some(l => /^[-・•◦]\ /.test(l.trim()));
+    const isBulletList = lines.some(l => /^[-・•◦] /.test(l.trim()));
     if (isBulletList) {
       return <ul key={pi} style={{margin:"6px 0", paddingLeft:22, lineHeight:1.9}}>
         {lines.filter(l => l.trim()).map((l, li) => {
-          const content = l.replace(/^[-・•◦]\ +/, "");
+          const content = l.replace(/^[-・•◦]\s+/, "");
           return <li key={li} style={{marginBottom:4}}>{renderInline(content)}</li>;
         })}
       </ul>;
