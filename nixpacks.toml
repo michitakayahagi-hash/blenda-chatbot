@@ -1,3 +1,11 @@
+[phases.setup]
+nixPkgs = ["nodejs_20"]
+
+[phases.install]
+cmds = ["npm install -g pnpm", "pnpm install"]
+
 [phases.build]
-cmds = ["pnpm install --frozen-lockfile", "pnpm build"]
-cacheDirectories = []
+cmds = ["pnpm build"]
+
+[start]
+cmd = "npx serve dist -p $PORT"
