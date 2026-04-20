@@ -451,6 +451,8 @@ export default function BlenderWizardChat() {
         </div>
       )}
 
+      <div style={{textAlign:"center", fontSize:12, color:"#999", padding:"4px 0 2px"}}
+      >クウはAIであり、間違いを犯すことがあります。回答を必ずご確認ください。</div>
       <div style={styles.inputBar}>
         <input type="file" ref={fileRef} style={{display:"none"}} multiple accept="image/*,application/pdf"
           onChange={e => handleFiles(e.target.files)} />
